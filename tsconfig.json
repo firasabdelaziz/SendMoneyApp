@@ -3,7 +3,7 @@
   "compilerOptions": {
     "typeRoots": [
       "./node_modules/@types",
-      "./src/@types",  // or "./types" or "./@types" depending on your folder structure
+      "./src/types",  // or "./types" or "./@types" depending on your folder structure
     ],
     "strict": true
   }

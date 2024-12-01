@@ -1,43 +1,46 @@
 import React from "react";
 import {
   View,
-  StyleSheet,
   SafeAreaView,
-  TouchableOpacity,
   Image,
   StatusBar,
 } from "react-native";
-import { IconButton, Text } from "react-native-paper";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types/navigation";
-import { RouteProp } from "@react-navigation/native";
+import { Text } from "react-native-paper";
+import {  TransactionSuccessScreenProps } from "../types/navigation";
 import normalize from "../hooks/useNormalize";
+import { theme } from "../styles/theme";
+import { CustomHeader } from "../components/common/CustomHeader";
+import { CommonStyles } from "../styles/common";
+import { CustomButton } from "../components/common/CustomButton";
+import { UserAvatar } from "../components/common/UserAvatar";
+import { styles } from "../styles/transactionSuccess.styles";
 
-type TransactionSuccessScreenProps = {
-  navigation: NativeStackNavigationProp<
-    RootStackParamList,
-    "TransactionSuccess"
-  >;
-  route: RouteProp<RootStackParamList, "TransactionSuccess">;
-};
 
+/**
+ * TransactionSuccessScreen component to display the details of a completed transaction.
+ * This screen shows a success message, transaction details (amount, fees, total), and 
+ * a transaction ID. It also includes a button to return to the SendMoney screen.
+ * 
+ * @param {TransactionSuccessScreenProps} props - The props passed to the component, including navigation and route parameters.
+ * @returns {JSX.Element} The rendered component for displaying the transaction success screen.
+ */
 export const TransactionSuccessScreen: React.FC<
   TransactionSuccessScreenProps
 > = ({ navigation, route }) => {
+
+  // Destructure the route parameters to extract the transaction details (amount, fees, total)
   const { amount, fees, total } = route.params;
+
+  // transaction ID
   const transactionId = "B899900032343";
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={CommonStyles.container}>
       <StatusBar barStyle="dark-content" />
 
+      <CustomHeader title="" onBack={() => navigation.goBack()} />
+
       <View style={styles.content}>
-        <IconButton
-          icon="arrow-left"
-          size={24}
-          style={{ position: "absolute", left: 15 }}
-          onPress={() => navigation.goBack()}
-        />
         {/* Success Icon */}
         <View style={styles.successIcon}>
           <View style={styles.iconCircle}>
@@ -51,16 +54,16 @@ export const TransactionSuccessScreen: React.FC<
             justifyContent: "center",
             alignItems: "center",
             width: "90%",
-            borderRadius: 10,
-            borderColor: "#f5f5f5",
-            borderWidth: 1,
+            borderRadius: normalize(10),
+            borderColor: theme.colors.lightGray,
+            borderWidth: 2,
           }}
         >
           {/* User Avatar */}
           <View style={styles.avatarContainer}>
-            <Image
+            <UserAvatar
               source={require("../../assets/userItem.jpg")}
-              style={styles.avatar}
+              size={70}
             />
           </View>
 
@@ -84,7 +87,7 @@ export const TransactionSuccessScreen: React.FC<
                 styles.detailRow,
                 {
                   borderTopWidth: 1,
-                  borderTopColor: "#f5f5f5",
+                  borderTopColor: theme.colors.lightGray,
                 },
               ]}
             >
@@ -140,142 +143,13 @@ export const TransactionSuccessScreen: React.FC<
       </View>
 
       {/* Done Button */}
-      <TouchableOpacity
-        style={styles.doneButton}
-        onPress={() => navigation.replace("SendMoney")}
-      >
-        <Text style={styles.doneButtonText}>Done</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <CustomButton
+          title="Done"
+          onPress={() => navigation.replace("SendMoney")}
+        />
+      </View>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#ffffff",
-  },
-  header: {
-    paddingTop: normalize(16),
-    paddingHorizontal: normalize(16),
-    alignItems: "center",
-  },
-  headerText: {
-    fontSize: normalize(18),
-    fontWeight: "500",
-  },
-  content: {
-    flex: 1,
-    alignItems: "center",
-    paddingTop: normalize(40),
-  },
-  successIcon: {
-    marginBottom: normalize(16),
-  },
-  iconCircle: {
-    marginTop: normalize(10),
-    marginBottom: normalize(5),
-    width: normalize(74),
-    height: normalize(74),
-    borderRadius: normalize(36),
-    backgroundColor: "#0EAA7E",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  checkmark: {
-    color: "#ffffff",
-    fontSize: normalize(50),
-  },
-  successText: {
-    fontSize: normalize(18),
-    fontWeight: "500",
-    marginBottom: normalize(24),
-    fontFamily: 'Ubuntu-Bold'
-  },
-  avatarContainer: {
-    width: normalize(70),
-    height: normalize(70),
-    borderRadius: normalize(50),
-    overflow: "hidden",
-    marginBottom: normalize(16),
-    marginTop: normalize(15),
-  },
-  avatar: {
-    width: "100%",
-    height: "100%",
-  },
-  amountContainer: {
-    alignItems: "center",
-    marginBottom: normalize(32),
-  },
-  amountText: {
-    fontSize: normalize(24),
-    fontWeight: "500",
-    fontFamily: 'Ubuntu-Bold'
-  },
-  moneyText: {
-    fontSize: normalize(14),
-    color: "#666666",
-    fontFamily: 'Ubuntu-Light'
-  },
-  detailsContainer: {
-    width: "100%",
-    paddingHorizontal: normalize(16),
-  },
-  detailRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: normalize(7),
-  },
-  totalRow: {
-    borderBottomWidth: 0,
-    marginBottom: normalize(12),
-  },
-  detailLabel: {
-    fontSize: normalize(14),
-    color: "#666666",
-    fontFamily: 'Ubuntu-Medium'
-  },
-  detailValue: {
-    fontSize: normalize(14),
-    fontWeight: "500",
-    fontFamily: 'Ubuntu-Medium'
-  },
-  transactionId: {
-    fontSize: normalize(14),
-    fontWeight: "500",
-    fontFamily: 'Ubuntu-Medium'
-  },
-  doneButton: {
-    margin: normalize(16),
-    height: normalize(48),
-    backgroundColor: "#ff5722",
-    borderRadius: normalize(8),
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  doneButtonText: {
-    color: "#ffffff",
-    fontSize: normalize(16),
-    fontWeight: "500",
-    fontFamily: 'Ubuntu-Medium'
-  },
-  currencyContainer: {
-    width: normalize(15),
-    height: normalize(15),
-    top: normalize(6),
-    marginLeft: normalize(2),
-    marginRight: normalize(5),
-  },
-  currencyContainerSmall: {
-    width: normalize(9),
-    height: normalize(9),
-    top: normalize(4),
-    marginLeft: normalize(2),
-    marginRight: normalize(5),
-  },
-  currencySymbol: {
-    width: "100%",
-    height: "100%",
-  },
-});

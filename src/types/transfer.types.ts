@@ -1,17 +1,23 @@
-export interface Transaction {
-  id: string;
-  amount: number;
-  note?: string;
-  timestamp: number;
-  type: "send" | "receive";
-}
+import {  TextInput } from "react-native";
 
-export interface UserState {
+
+// Defining the props for the useMoneyTransfer hook
+export interface UseMoneyTransferProps {
   balance: number;
-  transactions: Transaction[];
 }
 
-export interface TransferFormData {
-  amount: number;
-  note?: string;
+// Defining the return type for the useMoneyTransfer hook
+export interface UseMoneyTransferReturn {
+  amount: string;
+  fees: number;
+  total: number;
+  selectedValue: number;
+  showDiscountBanner: boolean;
+  inputRef: React.RefObject<TextInput>;
+  handleAmountChange: (text: string) => void;
+  setQuickAmount: (value: number) => void;
+  handleSend: () => void;
+  resetAmount: () => void;
+  loading:boolean;
 }
+

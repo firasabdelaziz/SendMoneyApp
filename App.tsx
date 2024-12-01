@@ -1,9 +1,6 @@
 import React, { useCallback } from "react";
 import { Provider as PaperProvider } from "react-native-paper";
-import { Provider as ReduxProvider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import { NavigationContainer } from "@react-navigation/native";
-import { store, persistor } from "./src/store";
 import { theme } from "./src/styles/theme";
 import { AppNavigator } from "./src/navigation/AppNavigator";
 import { useFonts } from "expo-font";
@@ -12,9 +9,12 @@ import { View, Text } from "react-native";
 import Toast from 'react-native-toast-message';
 import toastConfig from "./src/components/ToastConfig";
 
+// Prevent the splash screen from auto hiding until fonts are loaded
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+
+    // Hook to load custom fonts from the assets
   const [fontsLoaded] = useFonts({
     "Ubuntu-Bold": require("./assets/fonts/Ubuntu-Bold.ttf"),
     "Ubuntu-BoldItalic": require("./assets/fonts/Ubuntu-BoldItalic.ttf"),
@@ -26,12 +26,14 @@ export default function App() {
     "Ubuntu-Regular": require("./assets/fonts/Ubuntu-Regular.ttf"),
   });
 
+  // Callback to hide splash screen once the fonts are loaded
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
+  // If fonts are still loading, show a loading screen
   if (!fontsLoaded) {
     return (
       <View
@@ -47,18 +49,15 @@ export default function App() {
     );
   }
 
+  // Main app layout after fonts have loaded
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <ReduxProvider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
           <PaperProvider theme={theme}>
             <NavigationContainer>
               <AppNavigator />
             </NavigationContainer>
             <Toast config={toastConfig}  />
           </PaperProvider>
-        </PersistGate>
-      </ReduxProvider>
     </View>
   );
 }

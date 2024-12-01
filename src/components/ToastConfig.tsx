@@ -1,5 +1,5 @@
-import Toast, { BaseToast, ToastConfig, ToastConfigParams } from 'react-native-toast-message';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { ToastConfig, ToastConfigParams } from 'react-native-toast-message';
+import { View, StyleSheet } from 'react-native';
 import { Text, IconButton } from 'react-native-paper';
 import normalize from '../hooks/useNormalize';
 
