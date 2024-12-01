@@ -3,6 +3,8 @@ import { IconButton } from "react-native-paper";
 import { CommonStyles } from "../../styles/common";
 import { Text, View } from "react-native";
 import { CustomHeaderProps } from "../../types/components.types";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import normalize from "../../hooks/useNormalize";
 
 /**
  * A customizable header component that optionally displays a back button.
@@ -18,11 +20,12 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
   return (
     <View style={[haveTitle && CommonStyles.header]}>
       {onBack && (
-        <IconButton
-          icon="arrow-left"
-          size={24}
-          style={{ position: "absolute", left: 15 }}
+        <Ionicons
           onPress={onBack}
+          name="chevron-back"
+          size={24}
+          color="#000"
+          style={{ position: "absolute", left: normalize(25) , top : haveTitle ? 0 : normalize(15)  }}
         />
       )}
       {haveTitle && <Text style={CommonStyles.headerTitle}>{title}</Text>}

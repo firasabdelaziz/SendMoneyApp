@@ -22,6 +22,7 @@ import { CustomHeader } from "../components/common/CustomHeader";
 import { UserAvatar } from "../components/common/UserAvatar";
 import { CustomButton } from "../components/common/CustomButton";
 import { styles } from "../styles/sendMoney.styles";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 /**
  * SendMoneyScreen component to handle the money sending flow.
@@ -90,10 +91,7 @@ export const SendMoneyScreen: React.FC<SendMoneyScreenProps> = () => {
 
             {/* Balance */}
             <View style={styles.balanceContainer}>
-              <Image
-                source={require("../../assets/wallet.png")}
-                style={styles.balanceWallet}
-              />
+              <Ionicons name="wallet-outline" size={15} color="#818283" style={styles.balanceWallet}/>
               <Text style={styles.balanceLabel}>Balance: </Text>
               <Text style={styles.balanceAmount}>{balance.toFixed(3)} DT</Text>
             </View>
