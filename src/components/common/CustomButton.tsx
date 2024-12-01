@@ -1,9 +1,11 @@
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
 import { CommonStyles } from "../../styles/common";
 import { theme } from "../../styles/theme";
 import { CustomButtonProps } from "../../types/components.types";
 import { ActivityIndicator } from "react-native-paper";
+import { styles } from "../../styles/sendMoney.styles";
+import normalize from "../../hooks/useNormalize";
 
 /**
  * A customizable button component that triggers an action when pressed.
@@ -34,7 +36,18 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       disabled={disabled}
     >
       {loading ? (
-        <ActivityIndicator size="small" color={theme.colors.white} />
+        <View style={{ flexDirection: "row" }}>
+          <ActivityIndicator size={normalize(15)} color={theme.colors.white} style={{ right:normalize(5) }} />
+          <Text
+            style={[
+              CommonStyles.primaryButtonText,
+              disabled && { color: theme.colors.darkGray },
+              textStyle,
+            ]}
+          >
+            {title}
+          </Text>
+        </View>
       ) : (
         <Text
           style={[

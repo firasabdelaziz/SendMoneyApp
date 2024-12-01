@@ -41,6 +41,7 @@ export const SendMoneyScreen: React.FC<SendMoneyScreenProps> = () => {
 
   // Hook for managing the money transfer process
   const {
+    newBalance,
     amount,
     fees,
     total,
@@ -93,7 +94,7 @@ export const SendMoneyScreen: React.FC<SendMoneyScreenProps> = () => {
             <View style={styles.balanceContainer}>
               <Ionicons name="wallet-outline" size={15} color="#818283" style={styles.balanceWallet}/>
               <Text style={styles.balanceLabel}>Balance: </Text>
-              <Text style={styles.balanceAmount}>{balance.toFixed(3)} DT</Text>
+              <Text style={styles.balanceAmount}>{newBalance.toFixed(3)} DT</Text>
             </View>
 
             {/* Amount Display */}
@@ -102,7 +103,9 @@ export const SendMoneyScreen: React.FC<SendMoneyScreenProps> = () => {
               onPress={focusInput}
               activeOpacity={1}
             >
-              <View style={styles.amountInputWrapper}>
+              <View style={[styles.amountInputWrapper,{ 
+                borderColor: keyboardVisible ? theme.colors.lightPrimary : theme.colors.lightGray,
+               }]}>
                 <View style={styles.currencyContainer}>
                   <Image
                     source={require("../../assets/Currency.png")}
@@ -111,7 +114,9 @@ export const SendMoneyScreen: React.FC<SendMoneyScreenProps> = () => {
                 </View>
                 <TextInput
                   ref={inputRef}
-                  style={styles.amountInput}
+                  style={[styles.amountInput,{
+                    color : amount ==="0.000" ? theme.colors.midGray : theme.colors.black
+                  }]}
                   value={amount}
                   onChangeText={handleAmountChange}
                   keyboardType="numeric"

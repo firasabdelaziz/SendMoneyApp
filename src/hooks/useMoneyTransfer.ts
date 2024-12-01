@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { TextInput, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProp } from '../types/navigation';
@@ -34,29 +34,44 @@ import { UseMoneyTransferProps, UseMoneyTransferReturn } from '../types/transfer
  * - `handleSend` (function): Initiates the send transaction after validation.
  * - `resetAmount` (function): Resets all transfer-related fields.
  * - `loading` (boolean): Indicates if the transaction is being processed.
+ * - `newBalance` (number): The updated balance after the transaction.
  */
 export const useMoneyTransfer = ({ balance }: UseMoneyTransferProps): UseMoneyTransferReturn => {
   const navigation = useNavigation<NavigationProp>();
   const inputRef = useRef<TextInput>(null);
   
-  // State to manage the transfer amount, selected quick amount, and fees and loading state
+  // State to manage the transfer amount, selected quick amount, and fees and loading state ,new balance
   const [amount, setAmount] = useState("0.000");
   const [selectedValue, setSelectedValue] = useState(0);
   const [fees, setFees] = useState(0);
-  const [loading, setLoading] = useState(false); // Loading state
+  const [newBalance, setNewBalance] = useState(balance); 
+  const [loading, setLoading] = useState(false);
 
   // Derived values
   const numericAmount = parseFloat(amount);
   const total = numericAmount + fees;
   const showDiscountBanner = numericAmount > 0 && numericAmount <= 20;
 
-  // Effect to recalculate fees whenever the amount changes
-  useEffect(() => {
-    if(amount !== "0.000") {
-        const calculatedFees = calculateFees(numericAmount);
-        setFees(calculatedFees);    
+  /**
+   * Memo to recalculate fees and balance whenever amount or fees change.
+   * This ensures that the balance does not go negative.
+   */
+  useMemo(() => {
+    // Calculate fees only when the amount changes and is non-zero
+    if (amount !== "0.000") {
+      const calculatedFees = calculateFees(numericAmount);
+      setFees(calculatedFees);
     }
-  }, [amount]);  // Dependency array ensures this runs whenever `amount` changes
+
+    // Calculate new balance and prevent it from going negative
+    let updatedBalance = balance - total;
+    if (updatedBalance < 0) {
+      updatedBalance = 0;
+    }
+
+    setNewBalance(updatedBalance); // Update the new balance state
+  }, [amount, fees, balance]); // Recalculate whenever `amount`, `fees`, or `balance` changes
+  
 
 
   /**
@@ -103,7 +118,7 @@ export const useMoneyTransfer = ({ balance }: UseMoneyTransferProps): UseMoneyTr
     setLoading(true); // Set loading state to true when sending starts
     Keyboard.dismiss();
 
-    if (total > balance) {
+    if (total >= balance) {
       Toast.show({
         type: 'error',
         text1: 'Insufficient funds',
@@ -126,6 +141,7 @@ export const useMoneyTransfer = ({ balance }: UseMoneyTransferProps): UseMoneyTr
   };
 
   return {
+    newBalance,
     amount,
     fees,
     total,

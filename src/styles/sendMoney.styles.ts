@@ -85,7 +85,6 @@ export const styles = StyleSheet.create({
       alignSelf: "center",
       width: "95%",
       height: normalize(70),
-      borderColor: theme.colors.lightGray,
       borderWidth: 2,
       borderRadius: normalize(8),
       backgroundColor: theme.colors.white,
@@ -100,14 +99,13 @@ export const styles = StyleSheet.create({
       width: "100%",
       height: "100%",
       fontSize: normalize(16),
-      color: "#999999",
+      color: theme.colors.midGray,
     },
     amountInput: {
       fontSize: normalize(24),
       fontWeight: "400",
       textAlign: "right",
       marginRight: normalize(15),
-      color: "#999999",
       fontFamily: theme.fontFamily.medium,
     },
     infoMessageContainer: {

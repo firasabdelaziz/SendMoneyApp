@@ -38,7 +38,7 @@ export const TransactionSuccessScreen: React.FC<
     <SafeAreaView style={CommonStyles.container}>
       <StatusBar barStyle="dark-content" />
 
-      <CustomHeader title="" onBack={() => navigation.goBack()} />
+      <CustomHeader title="" onBack={() => navigation.replace("SendMoney")} />
 
       <View style={styles.content}>
         {/* Success Icon */}

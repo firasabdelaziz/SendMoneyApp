@@ -8,6 +8,7 @@ export interface UseMoneyTransferProps {
 
 // Defining the return type for the useMoneyTransfer hook
 export interface UseMoneyTransferReturn {
+  newBalance:number;
   amount: string;
   fees: number;
   total: number;
