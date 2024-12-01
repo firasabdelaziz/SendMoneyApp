@@ -1,6 +1,7 @@
 import Toast, { BaseToast, ToastConfig, ToastConfigParams } from 'react-native-toast-message';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, IconButton } from 'react-native-paper';
+import normalize from '../hooks/useNormalize';
 
 const toastConfig: ToastConfig = {
   error: ({ text1, props, hide }: ToastConfigParams<any>) => (
@@ -9,7 +10,7 @@ const toastConfig: ToastConfig = {
         <View style={styles.iconContainer}>
           <IconButton
             icon="close-circle"
-            size={35}
+            size={normalize(35)}
             iconColor="#BD0F1B"
           />
         </View>
@@ -17,7 +18,7 @@ const toastConfig: ToastConfig = {
       </View>
       <IconButton
         icon="close"
-        size={20}
+        size={normalize(20)}
         iconColor="#000"
       />
     </View>
@@ -27,20 +28,20 @@ const toastConfig: ToastConfig = {
 const styles = StyleSheet.create({
   errorToast: {
     backgroundColor: 'white',
-    padding: 8,
-    borderRadius: 8,
+    padding: normalize(8),
+    borderRadius: normalize(8),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginHorizontal: 16,
+    marginHorizontal: normalize(16),
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: normalize(2),
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowRadius: normalize(3.84),
   },
   contentContainer: {
     flexDirection: 'row',
@@ -48,10 +49,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   iconContainer: {
-    marginRight: 2,
+    marginRight: normalize(2),
   },
   messageText: {
-    fontSize: 16,
+    fontSize: normalize(16),
     color: '#000000',
     fontFamily: 'Ubuntu-Medium',
   }

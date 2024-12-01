@@ -17,6 +17,8 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
 import Toast from "react-native-toast-message";
+import normalize from "../hooks/useNormalize";
+import toastConfig from "../components/ToastConfig";
 
 type SendMoneyScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -279,13 +281,12 @@ export const SendMoneyScreen = () => {
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-      <Toast />
+      <Toast config={toastConfig}  />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  // ... (styles remain the same as in the previous version)
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
@@ -299,30 +300,30 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 16,
+    paddingHorizontal: normalize(16),
     borderBottomWidth: 2,
     borderColor: "#f5f5f5",
-    height: 56,
+    height: normalize(56),
     justifyContent: "center",
   },
   headerTitle: {
-    fontSize: 18,
+    fontSize: normalize(18),
     fontWeight: "500",
-    marginLeft: 16,
+    marginLeft: normalize(16),
     fontFamily: "Ubuntu-Medium",
   },
   userInfo: {
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 20,
-    marginTop: 25,
+    paddingHorizontal: normalize(20),
+    marginTop: normalize(25),
   },
   avatar: {
     position: "relative",
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: normalize(60),
+    height: normalize(60),
+    borderRadius: normalize(30),
     overflow: "hidden",
     backgroundColor: "#007bff",
     justifyContent: "center",
@@ -334,17 +335,17 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   userDetails: {
-    marginLeft: 12,
+    marginLeft: normalize(12),
   },
   userName: {
-    fontSize: 16,
+    fontSize: normalize(16),
     fontWeight: "500",
     fontFamily: "Ubuntu-Medium",
   },
   userNumber: {
-    fontSize: 12,
+    fontSize: normalize(12),
     color: "#666666",
-    marginTop: 5,
+    marginTop: normalize(5),
     fontFamily: "Ubuntu-Medium",
   },
   balanceContainer: {
@@ -352,28 +353,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#f5f5f5",
-    paddingVertical: 8,
-    marginTop: 45,
-    marginHorizontal: 90,
-    borderRadius: 15,
+    paddingVertical: normalize(8),
+    marginTop: normalize(45),
+    marginHorizontal: normalize(90),
+    borderRadius: normalize(15),
   },
   balanceWallet: {
-    height: 15,
-    width: 15,
-    right: 4,
+    height: normalize(15),
+    width: normalize(15),
+    right: normalize(4),
   },
   balanceLabel: {
-    fontSize: 14,
+    fontSize: normalize(14),
     color: "#666666",
     fontFamily: "Ubuntu-Medium",
   },
   balanceAmount: {
-    fontSize: 15,
+    fontSize: normalize(15),
     fontWeight: "500",
     fontFamily: "Ubuntu-Medium",
   },
   amountContainer: {
-    paddingVertical: 10,
+    paddingVertical: normalize(10),
     backgroundColor: "#ffffff",
   },
   amountInputWrapper: {
@@ -383,54 +384,54 @@ const styles = StyleSheet.create({
     position: "relative",
     alignSelf: "center",
     width: "95%",
-    height: 70,
+    height: normalize(70),
     borderColor: "#f5f5f5",
     borderWidth: 2,
-    borderRadius: 8,
+    borderRadius: normalize(8),
     backgroundColor: "#ffffff",
-    paddingVertical: 8,
+    paddingVertical: normalize(8),
   },
   currencyContainer: {
-    width: 20,
-    height: 20,
-    marginLeft: 15,
+    width: normalize(20),
+    height: normalize(20),
+    marginLeft: normalize(15),
   },
   currencySymbol: {
     width: "100%",
     height: "100%",
-    fontSize: 16,
+    fontSize: normalize(16),
     color: "#999999",
   },
   amountInput: {
-    fontSize: 24,
+    fontSize: normalize(24),
     fontWeight: "400",
     textAlign: "right",
-    marginRight: 15,
+    marginRight: normalize(15),
     color: "#999999",
     fontFamily: "Ubuntu-Medium",
   },
   infoMessageContainer: {
-    paddingHorizontal: 10,
+    paddingHorizontal: normalize(10),
     backgroundColor: "#D1EFE661",
-    borderRadius: 8,
+    borderRadius: normalize(8),
     width: "95%",
     alignSelf: "center",
     justifyContent: "center",
-    height: 25,
+    height: normalize(25),
   },
   infoMessageText: {
     color: "#0EAA7E",
-    fontSize: 11,
+    fontSize: normalize(11),
     fontFamily: "Ubuntu-Medium",
   },
   feesContainer: {
-    marginTop: 10,
-    paddingHorizontal: 20,
+    marginTop: normalize(10),
+    paddingHorizontal: normalize(20),
   },
   feeRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 8,
+    marginBottom: normalize(8),
   },
   feeFees: {
     color: "#666666",
@@ -443,19 +444,19 @@ const styles = StyleSheet.create({
   quickAmounts: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    paddingHorizontal: 35,
-    marginTop: 115,
+    paddingHorizontal: normalize(35),
+    marginTop: normalize(115),
   },
   quickAmountButton: {
-    width: 52,
-    height: 35,
-    borderRadius: 18,
+    width: normalize(52),
+    height: normalize(35),
+    borderRadius: normalize(18),
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
   },
   quickAmountText: {
-    fontSize: 14,
+    fontSize: normalize(14),
     fontWeight: "500",
     fontFamily: "Ubuntu-Medium",
   },
@@ -463,29 +464,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#ffebee",
-    marginHorizontal: 16,
-    marginTop: 16,
-    padding: 8,
-    borderRadius: 8,
+    marginHorizontal: normalize(16),
+    marginTop: normalize(16),
+    padding: normalize(8),
+    borderRadius: normalize(8),
   },
   errorText: {
     flex: 1,
     color: "red",
-    marginLeft: 8,
+    marginLeft: normalize(8),
     fontFamily: "Ubuntu-Medium",
   },
   sendButtonContainer: {
-    paddingHorizontal: 16,
-    paddingBottom: 32,
+    paddingHorizontal: normalize(16),
+    paddingBottom: normalize(32),
   },
   sendButton: {
-    height: 48,
-    borderRadius: 8,
+    height: normalize(48),
+    borderRadius: normalize(8),
     alignItems: "center",
     justifyContent: "center",
   },
   sendButtonText: {
-    fontSize: 16,
+    fontSize: normalize(16),
     fontWeight: "500",
     fontFamily: "Ubuntu-Medium",
   },

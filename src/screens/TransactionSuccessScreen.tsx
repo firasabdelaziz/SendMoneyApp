@@ -11,6 +11,7 @@ import { IconButton, Text } from "react-native-paper";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
 import { RouteProp } from "@react-navigation/native";
+import normalize from "../hooks/useNormalize";
 
 type TransactionSuccessScreenProps = {
   navigation: NativeStackNavigationProp<
@@ -155,50 +156,49 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
   header: {
-    paddingTop: 16,
-    paddingHorizontal: 16,
+    paddingTop: normalize(16),
+    paddingHorizontal: normalize(16),
     alignItems: "center",
   },
   headerText: {
-    fontSize: 18,
+    fontSize: normalize(18),
     fontWeight: "500",
   },
   content: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 40,
+    paddingTop: normalize(40),
   },
   successIcon: {
-    marginBottom: 16,
+    marginBottom: normalize(16),
   },
   iconCircle: {
-    marginTop: 10,
-    marginBottom: 5,
-    width: 74,
-    height: 74,
-    borderRadius: 36,
+    marginTop: normalize(10),
+    marginBottom: normalize(5),
+    width: normalize(74),
+    height: normalize(74),
+    borderRadius: normalize(36),
     backgroundColor: "#0EAA7E",
     justifyContent: "center",
     alignItems: "center",
   },
   checkmark: {
     color: "#ffffff",
-    fontSize: 50,
+    fontSize: normalize(50),
   },
   successText: {
-    fontSize: 18,
+    fontSize: normalize(18),
     fontWeight: "500",
-    marginBottom: 24,
-    fontFamily:'Ubuntu-Bold'
-
+    marginBottom: normalize(24),
+    fontFamily: 'Ubuntu-Bold'
   },
   avatarContainer: {
-    width: 70,
-    height: 70,
-    borderRadius: 50,
+    width: normalize(70),
+    height: normalize(70),
+    borderRadius: normalize(50),
     overflow: "hidden",
-    marginBottom: 16,
-    marginTop: 15,
+    marginBottom: normalize(16),
+    marginTop: normalize(15),
   },
   avatar: {
     width: "100%",
@@ -206,73 +206,73 @@ const styles = StyleSheet.create({
   },
   amountContainer: {
     alignItems: "center",
-    marginBottom: 32,
+    marginBottom: normalize(32),
   },
   amountText: {
-    fontSize: 24,
+    fontSize: normalize(24),
     fontWeight: "500",
-    fontFamily:'Ubuntu-Bold'
+    fontFamily: 'Ubuntu-Bold'
   },
   moneyText: {
-    fontSize: 14,
+    fontSize: normalize(14),
     color: "#666666",
-    fontFamily:'Ubuntu-Light'
+    fontFamily: 'Ubuntu-Light'
   },
   detailsContainer: {
     width: "100%",
-    paddingHorizontal: 16,
+    paddingHorizontal: normalize(16),
   },
   detailRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 7,
+    paddingVertical: normalize(7),
   },
   totalRow: {
     borderBottomWidth: 0,
-    marginBottom: 12,
+    marginBottom: normalize(12),
   },
   detailLabel: {
-    fontSize: 14,
+    fontSize: normalize(14),
     color: "#666666",
-    fontFamily:'Ubuntu-Medium'
+    fontFamily: 'Ubuntu-Medium'
   },
   detailValue: {
-    fontSize: 14,
+    fontSize: normalize(14),
     fontWeight: "500",
-    fontFamily:'Ubuntu-Medium'
+    fontFamily: 'Ubuntu-Medium'
   },
   transactionId: {
-    fontSize: 14,
+    fontSize: normalize(14),
     fontWeight: "500",
-    fontFamily:'Ubuntu-Medium'
+    fontFamily: 'Ubuntu-Medium'
   },
   doneButton: {
-    margin: 16,
-    height: 48,
+    margin: normalize(16),
+    height: normalize(48),
     backgroundColor: "#ff5722",
-    borderRadius: 8,
+    borderRadius: normalize(8),
     alignItems: "center",
     justifyContent: "center",
   },
   doneButtonText: {
     color: "#ffffff",
-    fontSize: 16,
+    fontSize: normalize(16),
     fontWeight: "500",
-    fontFamily:'Ubuntu-Medium'
+    fontFamily: 'Ubuntu-Medium'
   },
   currencyContainer: {
-    width: 15,
-    height: 15,
-    top: 6,
-    marginLeft: 2,
-    marginRight: 5,
+    width: normalize(15),
+    height: normalize(15),
+    top: normalize(6),
+    marginLeft: normalize(2),
+    marginRight: normalize(5),
   },
   currencyContainerSmall: {
-    width: 9,
-    height: 9,
-    top: 4,
-    marginLeft: 2,
-    marginRight: 5,
+    width: normalize(9),
+    height: normalize(9),
+    top: normalize(4),
+    marginLeft: normalize(2),
+    marginRight: normalize(5),
   },
   currencySymbol: {
     width: "100%",
