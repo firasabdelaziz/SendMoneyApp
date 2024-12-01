@@ -87,8 +87,6 @@ The **types** folder contains TypeScript type definitions for various parts of t
 ### 📝 Example Types
 
 - **Transaction**: Defines the structure of a transaction (e.g., amount, type, timestamp).
-- **UserState**: Represents user-related data such as balance and transaction history.
-- **TransferFormData**: Contains the form data for initiating money transfers, including the amount and note.
   
 By using these type definitions, the app ensures that the code remains consistent and robust.
 
