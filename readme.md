@@ -60,7 +60,7 @@
 ## 📲 Screens
 
 ### 💰 Send Money Screen
-Initiate transactions by entering the amount and an optional note.
+Initiate transactions by entering the amount.
 
 ### ✅ Transaction Success Screen
 Displays successful transaction details—amount, fees, total.
