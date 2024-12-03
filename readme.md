@@ -2,6 +2,12 @@
 
 **Description**: A sleek mobile app designed to handle **transactions**, **smooth interactions**, and **responsive design**. The app features custom UI components, a beautiful theme, and handles all business logic through reusable hooks, utility functions, and clear type definitions.
 
+
+
+https://github.com/user-attachments/assets/aee5a79d-fcdc-4c4b-b5d4-df7d4d92a915
+
+
+
 ## 🚀 Features
 
 - **🔲 Custom UI Components**: Buttons, headers, and avatars to enhance the user experience.
