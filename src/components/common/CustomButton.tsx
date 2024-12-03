@@ -37,7 +37,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
     >
       {loading ? (
         <View style={{ flexDirection: "row" }}>
-          <ActivityIndicator size={normalize(15)} color={theme.colors.white} style={{ right:normalize(5) }} />
+          <ActivityIndicator size={normalize(13)} color={theme.colors.disabledGray} style={{ right:normalize(5) }} />
           <Text
             style={[
               CommonStyles.primaryButtonText,

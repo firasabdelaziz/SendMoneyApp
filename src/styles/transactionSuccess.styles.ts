@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
       paddingTop: normalize(40),
     },
     successIcon: {
-      marginBottom: normalize(16),
+      marginBottom: normalize(10),
     },
     iconCircle: {
       marginTop: normalize(10),
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     },
     amountContainer: {
       alignItems: "center",
-      marginBottom: normalize(32),
+      marginBottom: normalize(16),
     },
     amountText: {
       fontSize: normalize(24),
@@ -67,7 +67,7 @@ export const styles = StyleSheet.create({
     detailRow: {
       flexDirection: "row",
       justifyContent: "space-between",
-      paddingVertical: normalize(7),
+      paddingVertical: normalize(8),
     },
     totalRow: {
       borderBottomWidth: 0,

@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  View,
-  SafeAreaView,
-  Image,
-  StatusBar,
-} from "react-native";
+import { View, SafeAreaView, Image, StatusBar } from "react-native";
 import { Text } from "react-native-paper";
-import {  TransactionSuccessScreenProps } from "../types/navigation";
+import { TransactionSuccessScreenProps } from "../types/navigation";
 import normalize from "../hooks/useNormalize";
 import { theme } from "../styles/theme";
 import { CustomHeader } from "../components/common/CustomHeader";
@@ -14,25 +9,34 @@ import { CommonStyles } from "../styles/common";
 import { CustomButton } from "../components/common/CustomButton";
 import { UserAvatar } from "../components/common/UserAvatar";
 import { styles } from "../styles/transactionSuccess.styles";
-
+import LottieView from "lottie-react-native";
+import { useLottieAnimation } from "../hooks/useLottieAnimation";
 
 /**
  * TransactionSuccessScreen component to display the details of a completed transaction.
- * This screen shows a success message, transaction details (amount, fees, total), and 
+ * This screen shows a success message, transaction details (amount, fees, total), and
  * a transaction ID. It also includes a button to return to the SendMoney screen.
- * 
+ *
  * @param {TransactionSuccessScreenProps} props - The props passed to the component, including navigation and route parameters.
  * @returns {JSX.Element} The rendered component for displaying the transaction success screen.
  */
 export const TransactionSuccessScreen: React.FC<
   TransactionSuccessScreenProps
-> = ({ navigation, route }) => {
-
+> = ({ navigation, route }: TransactionSuccessScreenProps): JSX.Element => {
+  
   // Destructure the route parameters to extract the transaction details (amount, fees, total)
   const { amount, fees, total } = route.params;
 
   // transaction ID
   const transactionId = "B899900032343";
+
+  // Use the `useLottieAnimation` hook to manage and configure the Lottie animation.
+  const { getLottieProps } = useLottieAnimation({
+    autoPlay: true,
+    delay: 200,
+    speed: 1.0,
+    loop: false,
+  });
 
   return (
     <SafeAreaView style={CommonStyles.container}>
@@ -43,9 +47,14 @@ export const TransactionSuccessScreen: React.FC<
       <View style={styles.content}>
         {/* Success Icon */}
         <View style={styles.successIcon}>
-          <View style={styles.iconCircle}>
-            <Text style={styles.checkmark}>✓</Text>
-          </View>
+          <LottieView
+            {...getLottieProps()}
+            source={require("../../assets/lotties/success.json")}
+            style={{
+              width: normalize(108),
+              height: normalize(108),
+            }}
+          />
         </View>
 
         <Text style={styles.successText}>Transaction completed</Text>
@@ -152,4 +161,3 @@ export const TransactionSuccessScreen: React.FC<
     </SafeAreaView>
   );
 };
-
