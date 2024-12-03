@@ -32,7 +32,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
  *
  * @returns {JSX.Element} The rendered component for sending money.
  */
-export const SendMoneyScreen: React.FC<SendMoneyScreenProps> = () => {
+export const SendMoneyScreen: React.FC<SendMoneyScreenProps> = (): JSX.Element => {
   // Placeholder balance value
   const balance = 2500.0;
 
@@ -195,17 +195,17 @@ export const SendMoneyScreen: React.FC<SendMoneyScreenProps> = () => {
             <CustomButton
               onPress={handleSend}
               title="Send money"
-              disabled={amount === "0.000"}
+              disabled={amount === "0.000" || loading}
               loading={loading}
               style={{
                 backgroundColor:
-                  amount === "0.000"
+                  amount === "0.000" || loading
                     ? theme.colors.lightGray
                     : theme.colors.primary,
               }}
               textStyle={{
                 color:
-                  amount === "0.000"
+                  amount === "0.000" || loading
                     ? theme.colors.disabledGray
                     : theme.colors.white,
               }}

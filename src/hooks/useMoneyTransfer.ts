@@ -1,16 +1,17 @@
-import { useState, useRef, useMemo } from 'react';
-import { TextInput, Keyboard } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationProp } from '../types/navigation';
-import Toast from 'react-native-toast-message';
-import { calculateFees } from '../utils/fees';
-import { UseMoneyTransferProps, UseMoneyTransferReturn } from '../types/transfer.types';
-
-
+import { useState, useRef, useMemo } from "react";
+import { TextInput, Keyboard } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NavigationProp } from "../types/navigation";
+import Toast from "react-native-toast-message";
+import { calculateFees } from "../utils/fees";
+import {
+  UseMoneyTransferProps,
+  UseMoneyTransferReturn,
+} from "../types/transfer.types";
 
 /**
  * Custom hook for managing the money transfer workflow.
- * 
+ *
  * This hook handles:
  * - Managing the transfer amount.
  * - Calculating fees dynamically based on the transfer amount.
@@ -18,10 +19,10 @@ import { UseMoneyTransferProps, UseMoneyTransferReturn } from '../types/transfer
  * - Providing utilities for quick-select amounts and resetting inputs.
  * - Integrating with navigation for transaction success handling.
  * - Displaying a discount banner for eligible amounts.
- * 
+ *
  * @param {UseMoneyTransferProps} props - The input properties for the hook.
  * @param {number} props.balance - The user's current balance used for validation.
- * 
+ *
  * @returns {UseMoneyTransferReturn} An object containing:
  * - `amount` (string): The current transfer amount as a formatted string.
  * - `fees` (number): The calculated transaction fees.
@@ -36,15 +37,17 @@ import { UseMoneyTransferProps, UseMoneyTransferReturn } from '../types/transfer
  * - `loading` (boolean): Indicates if the transaction is being processed.
  * - `newBalance` (number): The updated balance after the transaction.
  */
-export const useMoneyTransfer = ({ balance }: UseMoneyTransferProps): UseMoneyTransferReturn => {
+export const useMoneyTransfer = ({
+  balance,
+}: UseMoneyTransferProps): UseMoneyTransferReturn => {
   const navigation = useNavigation<NavigationProp>();
   const inputRef = useRef<TextInput>(null);
-  
+
   // State to manage the transfer amount, selected quick amount, and fees and loading state ,new balance
   const [amount, setAmount] = useState("0.000");
   const [selectedValue, setSelectedValue] = useState(0);
   const [fees, setFees] = useState(0);
-  const [newBalance, setNewBalance] = useState(balance); 
+  const [newBalance, setNewBalance] = useState(balance);
   const [loading, setLoading] = useState(false);
 
   // Derived values
@@ -71,8 +74,6 @@ export const useMoneyTransfer = ({ balance }: UseMoneyTransferProps): UseMoneyTr
 
     setNewBalance(updatedBalance); // Update the new balance state
   }, [amount, fees, balance]); // Recalculate whenever `amount`, `fees`, or `balance` changes
-  
-
 
   /**
    * Handler for manual changes to the amount input field.
@@ -115,14 +116,16 @@ export const useMoneyTransfer = ({ balance }: UseMoneyTransferProps): UseMoneyTr
    * Navigates to the success screen on valid transactions.
    */
   const handleSend = () => {
+    if (loading) return; // Prevent double-clicks while loading is true.
+
     setLoading(true); // Set loading state to true when sending starts
     Keyboard.dismiss();
 
     if (total >= balance) {
       Toast.show({
-        type: 'error',
-        text1: 'Insufficient funds',
-        position: 'top',
+        type: "error",
+        text1: "Insufficient funds",
+        position: "top",
         visibilityTime: 3000,
       });
       setLoading(false); // Set loading state to false when the process ends
@@ -130,14 +133,17 @@ export const useMoneyTransfer = ({ balance }: UseMoneyTransferProps): UseMoneyTr
     }
 
     setTimeout(() => {
-      navigation.navigate('TransactionSuccess', {
+      navigation.navigate("TransactionSuccess", {
         amount: numericAmount,
         fees,
         total,
-      }); 
-      setLoading(false); // Set loading state to false after transaction is processed
+      });
     }, 1000);
 
+    const unsubscribe = navigation.addListener("blur", () => {
+      setLoading(false); // Reset loading state once navigation completes.
+      unsubscribe(); // Clean up the listener after it fires.
+    });
   };
 
   return {
@@ -152,6 +158,6 @@ export const useMoneyTransfer = ({ balance }: UseMoneyTransferProps): UseMoneyTr
     setQuickAmount,
     handleSend,
     resetAmount,
-    loading, 
+    loading,
   };
 };
