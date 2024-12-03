@@ -2,14 +2,7 @@
 
 **Description**: A sleek mobile app designed to handle **transactions**, **smooth interactions**, and **responsive design**. The app features custom UI components, a beautiful theme, and handles all business logic through reusable hooks, utility functions, and clear type definitions.
 
-
-
-
-Uploading WhatsApp Vidéo 2024-12-03 à 20.37.05_f9bc0630.mp4…
-
-
-
-
+https://github.com/user-attachments/assets/8e9eeb27-0975-4b1c-9938-a7a5b54a2263
 
 ## 🚀 Features
 
