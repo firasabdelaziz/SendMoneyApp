@@ -107,7 +107,3 @@ By using these type definitions, the app ensures that the code remains consisten
 3. Commit changes
 4. Push to your branch
 5. Open a Pull Request
-
-## 📜 License
-
-MIT License – see [LICENSE](LICENSE) for more details.
