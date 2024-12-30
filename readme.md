@@ -2,6 +2,8 @@
 
 **Description**: A sleek mobile app designed to handle **transactions**, **smooth interactions**, and **responsive design**. The app features custom UI components, a beautiful theme, and handles all business logic through reusable hooks, utility functions, and clear type definitions.
 
+https://github.com/user-attachments/assets/8e9eeb27-0975-4b1c-9938-a7a5b54a2263
+
 ## 🚀 Features
 
 - **🔲 Custom UI Components**: Buttons, headers, and avatars to enhance the user experience.
@@ -105,7 +107,3 @@ By using these type definitions, the app ensures that the code remains consisten
 3. Commit changes
 4. Push to your branch
 5. Open a Pull Request
-
-## 📜 License
-
-MIT License – see [LICENSE](LICENSE) for more details.
